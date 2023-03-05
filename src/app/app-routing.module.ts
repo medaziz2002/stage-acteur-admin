@@ -17,25 +17,26 @@ import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { InscrireComponent } from './inscrire/inscrire.component';
 import { ProfilComponent } from './profil/profil.component';
+import { AuthGuard } from './services/Authguard.service';
 
 const routes: Routes = [
 
-  {path:"ajout-admin" ,component:AjoutAdminComponent},
-  {path:"ajout-livreur" ,component:AjoutLivreurComponent},
-  {path:"liste-livreur" ,component:ListeLivreurComponent},
-  {path:"ajout-commande" , component:AjoutCommandeComponent},
-  {path:"liste-commande", component:ListeCommandeComponent},
-  {path:"liste-contact" ,component:ListeContactComponent},
-  {path:"modifier-admin/:id",component:ModifierAdminComponent},
-  {path:"modifier-livreur/:id",component:ModifierLivreurComponent},
-  {path:"modifier-commande/:id",component:ModifierCommandeComponent},
+  {path:"ajout-admin" ,component:AjoutAdminComponent,canActivate:[AuthGuard]},
+  {path:"ajout-livreur" ,component:AjoutLivreurComponent,canActivate:[AuthGuard]},
+  {path:"liste-livreur" ,component:ListeLivreurComponent,canActivate:[AuthGuard]},
+  {path:"ajout-commande" , component:AjoutCommandeComponent,canActivate:[AuthGuard]},
+  {path:"liste-commande", component:ListeCommandeComponent,canActivate:[AuthGuard]},
+  {path:"liste-contact" ,component:ListeContactComponent,canActivate:[AuthGuard]},
+  {path:"modifier-admin/:id",component:ModifierAdminComponent,canActivate:[AuthGuard]},
+  {path:"modifier-livreur/:id",component:ModifierLivreurComponent,canActivate:[AuthGuard]},
+  {path:"modifier-commande/:id",component:ModifierCommandeComponent,canActivate:[AuthGuard]},
   {path:"" , component:LoginComponent},
-  {path:"liste-admin",component:ListeAdminComponent},
+  {path:"liste-admin",component:ListeAdminComponent,canActivate:[AuthGuard]},
   {path:"inscrit",component:InscrireComponent},
-  {path:"profil",component:ProfilComponent},
-  {path:"index",component:IndexComponent},
-  {path:"ajout-livraison",component:AjoutLivraisonComponent},
-  {path:"liste-livraison",component:ListeLivraisonComponent}
+  {path:"profil",component:ProfilComponent,canActivate:[AuthGuard]},
+  {path:"index",component:IndexComponent,canActivate:[AuthGuard]},
+  {path:"ajout-livraison",component:AjoutLivraisonComponent,canActivate:[AuthGuard]},
+  {path:"liste-livraison",component:ListeLivraisonComponent,canActivate:[AuthGuard]}
 
 ];
 

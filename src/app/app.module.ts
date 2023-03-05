@@ -26,7 +26,6 @@ import { ProfilComponent } from './profil/profil.component';
 import { ListeLivraisonComponent } from './liste-livraison/liste-livraison.component';
 import { AjoutLivraisonComponent } from './ajout-livraison/ajout-livraison.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

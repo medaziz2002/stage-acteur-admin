@@ -43,7 +43,7 @@
 
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label>détail de la commande</label>
-            <select class="form-control form-control-lg" id="id" name="id">
+            <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="val1">
             <option *ngFor="let i of cmds" [value]="i.id">
             {{i.libelle}}--{{i.qte}}--{{i.prix}}--{{i.date| date:'dd/MM/yyyy'}}--{{i.gouvernorat}}--{{i.teleclient}}--{{i.adresseclient}}
             </option>
@@ -52,7 +52,8 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12">
               <label>détail de la livreur</label>
-              <select class="form-control form-control-lg" id="id" name="id">
+              <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="val2">
+
               <option *ngFor="let j of livs" [value]="j.id">
               {{j.nom}}--{{j.prenom}}--{{j.email}}--{{j.numtel}}
               </option>
@@ -60,7 +61,7 @@
               </div>
               <div class="mt-2">
 
-                <button type="submit"   routerLink="/liste-livraison"
+                <button type="submit"   (click)="ajoutCommande1()"
                 class="btn btn-success">Effectuer</button>
 
                 </div>

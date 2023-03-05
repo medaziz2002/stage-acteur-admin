@@ -67,7 +67,7 @@ export class InscrireComponent implements OnInit {
         console.log(res);
         this.toast.success({
           detail: 'Succes Message',
-          summary: 'Message est Envoyée',
+          summary: 'Compter creer avec succes',
         });
 
         this.router.navigate(['/']);

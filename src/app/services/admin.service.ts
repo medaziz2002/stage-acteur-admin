@@ -20,6 +20,7 @@ export class AdminService {
   {
 
   }
+  
 
   listeAdmin():Observable<admin[]>{
     return this.http.get<admin[]>(this.apiURL);
@@ -53,6 +54,7 @@ modifierAdmin(a:admin):Observable<admin>
 /*addNewAdmin(admin:Admin){
   return this.http.post<any>(this.apiUrl+"/admin", admin);
 }*/
+
 
 
 

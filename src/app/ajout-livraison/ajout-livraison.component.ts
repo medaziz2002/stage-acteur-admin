@@ -5,6 +5,8 @@ import { Commande } from './../Model/Commande.model';
 import { CommandeService } from './../services/commande.service';
 import { Component, OnInit } from '@angular/core';
 import { LivraisonService } from '../services/livraison.service';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajout-livraison',
@@ -13,37 +15,80 @@ import { LivraisonService } from '../services/livraison.service';
 })
 export class AjoutLivraisonComponent implements OnInit {
 
-  cmds:Commande[];
-  livs:Livreur[];
-  val1!:number;
-  val2!:number;
 
-  constructor(private commandeService:CommandeService,private livreurService:LivreurService,private livraisonService:LivraisonService) { }
 
+
+listLiv:Livreur[]
+  listCommande:any=[]
+  commandeId:number=0;
+  livreurId:number=0;
+  message:string="";
+  constructor(private services:LivraisonService,private router:Router,private fb:FormBuilder)
+  {}
+  
+  changerLiv(event:any)
+  {
+   this.livreurId=event;
+  }
+  changerCommande(event:any)
+  {
+   this.commandeId=event;
+  }
   ngOnInit(): void {
-
-    this.commandeService.listeCommande().subscribe(cmd=>{
-     console.log(cmd);
-     this.cmds=cmd;
+  this.getLiv()
+  this.commandeL()
+  }
+  getLiv()
+  {
+    this.services.getLiv().subscribe(liv => {
+      this.listLiv = liv
+      console.log("liv",this.listLiv)
+    },err=>{
+      console.log(err)
     })
-
-    this.livreurService.listeLivreur().subscribe(liv=>{
-      console.log(liv);
-      this.livs=liv;
-     })
+  }
+  commandeL()
+  {
+    this.services.getCommande().subscribe((data:any) => {
+      this.listCommande = data
+      console.log("comm",this.listCommande)
+    })
+  }
+  add(liv:any,comm:any)
+  {
+    console.log(liv,comm)
+    let rq:any={}
+    rq.commande=this.commandeId
+    console.log(rq.commande)
+    rq.livreur=this.livreurId
+    console.log(rq.livreur)
+    console.log(rq)
+    if(rq.commande!= 0 &&  rq.livreur!= 0)
+    {
+      this.services.addAffect(rq).subscribe((data:any)=>{
+        this.message=`<div class="alert alert-success" role="alert">
+        Livreur affacté ! 
+      </div>`
+       },err=>{
+         this.message=`<div class="alert alert-warning" role="alert">
+         Livreur déjà affacté ! 
+       </div>`
+       })
+    }else
+    {
+      this.message=`<div class="alert alert-warning" role="alert">
+     choix livreur et comande obligatoire ! 
+    </div>`
+    }
+    setTimeout(() => {
+      this.message=""
+    }, 3000);
+    
   }
 
 
-ajoutCommande1()
-{
-this.livraisonService.ajoutCommande1(this.val1).subscribe(res1=>{
-  console.log(res1);
-})
-this.livraisonService.ajoutCommande2(this.val2).subscribe(res2=>{
-  console.log(res2);
-})
-}
-
-
 
 }
+
+
+

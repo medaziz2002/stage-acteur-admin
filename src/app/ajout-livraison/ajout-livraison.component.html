@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <title>Ajouter Produit</title>
 
 </head>
-<body id="page-top">
-
+<body id="page-top"> 
+    
      <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <app-menu></app-menu>
+<app-menu></app-menu>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -26,54 +23,79 @@
       <div id="content">
 
         <!-- Topbar -->
-      <app-header></app-header>
+       <app-header></app-header>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-        <div class="col" >
-            <div class="card shadow mb-4" class="col-lg-7">
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    Ajouter Livraison</h6>
-              </div>
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Effectuée La Commande</h1>
+          </div>
+
+        </div>
+        <div class="col">
+            <div class="card shadow mb-4">
+       
 
           <div class="card-body">
-        <form  >
+      
+            <div class="form-group">
+            <label for="name" id="name">Livreur : </label>
 
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <label>détail de la commande</label>
-            <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="val1">
-            <option *ngFor="let i of cmds" [value]="i.id">
-            {{i.libelle}}--{{i.qte}}--{{i.prix}}--{{i.date| date:'dd/MM/yyyy'}}--{{i.gouvernorat}}--{{i.teleclient}}--{{i.adresseclient}}
-            </option>
-            </select>
-            </div>
-
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              <label>détail de la livreur</label>
-              <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="val2">
-
-              <option *ngFor="let j of livs" [value]="j.id">
-              {{j.nom}}--{{j.prenom}}--{{j.email}}--{{j.numtel}}
-              </option>
-              </select>
+            <div class="ligne">
+              <div class="ligne-item">
+                  livREf
+                  <select  #livREf [(ngModel)]="livreurId" class="form-control form-control-sm"   aria-label="Default select example"
+                      name="id">
+                      <option [value]="liv?.id" *ngFor="let liv of listLiv">
+                        {{liv?.nom}}
+                      </option>
+                      <option value=0>
+                        liste livreurs
+                      </option>
+                  </select>
               </div>
-              <div class="mt-2">
+          </div>
+          <br>
 
-                <button type="submit"   (click)="ajoutCommande1()"
-                class="btn btn-success">Effectuer</button>
 
-                </div>
-        </form>
+
+          <label for="name" id="name">Commande : </label>
+
+          <div class="ligne">
+            <div class="ligne-item">
+            
+                <select  #comREf [(ngModel)]="commandeId" class="form-control form-control-sm"  aria-label="Default select example"
+                    name="id">
+                    <option [value]="com?.id" *ngFor="let com of listCommande">
+                      {{com?.client?.nom}} :commande numéro-> {{com?.id}}
+                    </option>
+                    <option value=0>
+                      liste commande clients
+                    </option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+
+
+
+       
+            <div [innerHtml]="message"></div>
+            <button  type="submit"  class="btn btn-sm btn-primary mt-3"
+            data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="add(livREf.value,comREf.value)">Ajouter</button>
+        </div>
+      
     </div>
     </div>
     </div>
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <app-footer></app-footer>
+    <app-footer></app-footer>
       <!-- End of Footer -->
 
     </div>
@@ -87,28 +109,10 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+
+
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">x</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
+ 
 
 </body>
 </html>
-

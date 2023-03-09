@@ -38,6 +38,7 @@ export class ListeCommandeComponent implements OnInit {
         console.log("commande supprimer");
         this.chargerCommande();
         this.router.navigate(['liste-commande']);
+        
       })
     }
 

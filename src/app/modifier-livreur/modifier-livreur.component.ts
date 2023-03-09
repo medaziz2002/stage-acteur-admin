@@ -30,6 +30,7 @@ modifierLivreur()
     {
       console.log(livreur);
       this.router.navigate(['liste-livreur']);
+      window.location.reload();
     }
   )
 

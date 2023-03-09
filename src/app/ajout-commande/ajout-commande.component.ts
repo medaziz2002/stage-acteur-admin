@@ -147,7 +147,7 @@ export class AjoutCommandeComponent implements OnInit {
         console.log(res);
         this.toast.success({
           detail: 'Succes Message',
-          summary: 'Message est Envoyée',
+          summary: 'Ajout faite avec success',
         });
 
         this.router.navigate(['/liste-commande']);
